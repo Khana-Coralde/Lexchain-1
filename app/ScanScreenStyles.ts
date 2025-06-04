@@ -26,25 +26,17 @@ export default StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
-  captureButton: {
-    position: 'absolute',
-    bottom: 40,
-    alignSelf: 'center',
-    backgroundColor: '#1d3954',
-    padding: 20,
-    borderRadius: 50,
-  },
+
   bottomButtonContainer: {
-    position: 'absolute',
-    bottom: 40,
-    width: '100%',
-    alignItems: 'center',
-  },
-  saveButton: {
-    backgroundColor: 'green',
-    padding: 20,
-    borderRadius: 50,
-  },
+  position: 'absolute',
+  bottom: 40,
+  width: '100%',
+  flexDirection: 'row',       // 🔹 Make buttons appear side by side
+  justifyContent: 'center',   // 🔹 Center them horizontally
+  alignItems: 'center',       // 🔹 Align them vertically
+  gap: 20,                    // 🔹 Adds spacing between buttons (if supported)
+},
+
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
@@ -57,4 +49,45 @@ export default StyleSheet.create({
     borderRadius: 10,
     marginTop: 20,
   },
+
+captureButton: {
+  position: 'absolute',
+  bottom: 150,
+  alignSelf: 'center',
+  backgroundColor: '#1d3954',
+  padding: 18,
+  borderRadius: 50,
+  justifyContent: 'center',
+  alignItems: 'center',
+  elevation: 5,
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.3,
+  shadowRadius: 3,
+},
+
+captureIcon: {
+  fontSize: 36,
+  color: 'white',
+},
+
+saveButton: {
+  backgroundColor: '#1d3954',
+  padding: 18,
+  bottom: 130,
+  borderRadius: 50,
+  justifyContent: 'center',
+  alignItems: 'center',
+  elevation: 5,
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.3,
+  shadowRadius: 3,
+  marginHorizontal: 40, // 🔹 Add spacing between buttons]
+},
+
+actionIcon: {
+  fontSize: 36,
+  color: 'white',
+},
 });

@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { decode } from 'base64-arraybuffer';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import * as FileSystem from 'expo-file-system';
@@ -70,27 +71,34 @@ const uploadPhoto = async () => {
       </View>
     );
   }
+  
 
-  return (
-    <View style={{ flex: 1 }}>
-      {capturedPhoto ? (
-        <>
-          <Image source={{ uri: capturedPhoto }} style={scanStyles.previewImage} />
-          <TouchableOpacity style={scanStyles.button} onPress={uploadPhoto}>
-            <Text style={scanStyles.buttonText}>Save</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={scanStyles.button} onPress={() => setCapturedPhoto(null)}>
-            <Text style={scanStyles.buttonText}>Retake</Text>
-          </TouchableOpacity>
-        </>
-      ) : (
-        <>
-          <CameraView style={scanStyles.cameraPreview} ref={cameraRef} facing="back" />
-          <TouchableOpacity style={scanStyles.button} onPress={takePicture}>
-            <Text style={scanStyles.buttonText}>Capture</Text>
-          </TouchableOpacity>
-        </>
-      )}
-    </View>
-  );
+return (
+  <View style={{ flex: 1 }}>
+    {capturedPhoto ? (
+      <>
+  <Image source={{ uri: capturedPhoto }} style={scanStyles.previewImage} />
+
+  <View style={scanStyles.bottomButtonContainer}>
+    <TouchableOpacity style={scanStyles.saveButton} onPress={uploadPhoto}>
+      <Ionicons name="checkmark-circle" style={scanStyles.actionIcon} />
+    </TouchableOpacity>
+
+    <TouchableOpacity style={scanStyles.saveButton} onPress={() => setCapturedPhoto(null)}>
+      <Ionicons name="refresh-circle" style={scanStyles.actionIcon} />
+    </TouchableOpacity>
+  </View>
+</>
+    ) : (
+      <>
+        <CameraView style={scanStyles.cameraPreview} ref={cameraRef} facing="back" />
+        
+        {/* 🎯 Icon Button Instead of Text */}
+        <TouchableOpacity style={scanStyles.captureButton} onPress={takePicture}>
+          <Ionicons name="camera" style={scanStyles.captureIcon} />
+        </TouchableOpacity>
+      </>
+    )}
+  </View>
+);
 }
