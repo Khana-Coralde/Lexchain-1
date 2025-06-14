@@ -1,11 +1,11 @@
 {
   "expo": {
     "name": "Lexchain",
-    "slug": "Lexchain",
+    "slug": "Lexchain-1",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "lexchain",
+    "scheme": "lexchain1",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
