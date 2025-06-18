@@ -1,31 +1,17 @@
-// app/ConnectWalletScreen.js
-import { useWeb3Modal } from '@web3modal/wagmi-react-native';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import { useAccount } from 'wagmi';
+import React from 'react';
+import { Button, Text, View } from 'react-native';
+import { useWallet } from '../context/WalletConnectProvider';
 
 export default function ConnectWalletScreen() {
-  const { open } = useWeb3Modal();
-  const { address, isConnected } = useAccount();
+  const { connect, address } = useWallet();
 
   return (
-    <View style={styles.container}>
-      {isConnected ? (
-        <>
-          <Text style={styles.text}>Connected Wallet:</Text>
-          <Text style={styles.address}>{address}</Text>
-        </>
+    <View style={{ padding: 20, marginTop: 50 }}>
+      {address ? (
+        <Text>Connected: {address}</Text>
       ) : (
-        <>
-          <Text style={styles.text}>No wallet connected</Text>
-          <Button title="Connect Wallet" onPress={open} />
-        </>
+        <Button title="Connect Wallet" onPress={() => connect()} />
       )}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  text: { fontSize: 18, marginBottom: 10 },
-  address: { fontSize: 16, fontWeight: 'bold', color: '#333' },
-});
