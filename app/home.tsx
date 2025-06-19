@@ -3,10 +3,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import { Image, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { useWallet } from '../context/MockWalletConnectProvider'; // ✅ adjust if using real one later
 import styles from './HomeScreenStyles';
 
 export default function HomeScreen() {
   const router = useRouter();
+  const { address, connect, disconnect } = useWallet(); // ✅ Access mock wallet context
 
   const handleLogout = async () => {
     await AsyncStorage.removeItem("token");
@@ -25,6 +27,23 @@ export default function HomeScreen() {
           <AntDesign name="logout" size={20} color="#1d3954" />
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
+      </View>
+
+      {/* Wallet Connect Section */}
+      <View style={{ alignItems: 'center', marginBottom: 20 }}>
+        {address ? (
+          <>
+            <Text style={{ fontSize: 12, marginBottom: 4 }}>Connected Wallet:</Text>
+            <Text style={{ fontSize: 14, fontWeight: 'bold', marginBottom: 8 }}>{address}</Text>
+            <TouchableOpacity onPress={disconnect} style={{ padding: 10, backgroundColor: '#ccc', borderRadius: 8 }}>
+              <Text>Disconnect Wallet</Text>
+            </TouchableOpacity>
+          </>
+        ) : (
+          <TouchableOpacity onPress={connect} style={{ padding: 10, backgroundColor: '#1d3954', borderRadius: 8 }}>
+            <Text style={{ color: 'white' }}>Connect Wallet</Text>
+          </TouchableOpacity>
+        )}
       </View>
 
       {/* Title */}

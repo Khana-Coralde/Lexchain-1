@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Text, View } from 'react-native';
-import { useWallet } from '../context/WalletConnectProvider';
+// import { useWallet } from '../context/WalletConnectProvider'; // real wallet
+import { useWallet } from '../context/MockWalletConnectProvider'; // mock wallet for testing
 
 export default function ConnectWalletScreen() {
   const { connect, address } = useWallet();
